@@ -23,61 +23,7 @@
 pthread_mutex_t mutex;
 #define BUFFER_SIZE 10240
 using json = nlohmann::json; // like alias in bash
-
-std::map<std::string, int> freq;
-
-void print_freq() {
-  // Open the file in write mode (this will create the file if it doesn't exist)
-  std::ofstream output_file("output_part1.txt");
-
-  // Check if the file is successfully opened
-  if (!output_file.is_open()) {
-    std::cerr << "Failed to open output file.\n";
-    return;
-  }
-
-  // Create a vector of pairs from the map
-  std::vector<std::pair<std::string, int>> sorted_freq(freq.begin(),
-                                                       freq.end());
-
-  // Sort the vector in a case-insensitive manner
-  std::sort(sorted_freq.begin(), sorted_freq.end(),
-            [](const std::pair<std::string, int> &a,
-               const std::pair<std::string, int> &b) {
-              std::string a_lower = a.first;
-              std::string b_lower = b.first;
-              std::transform(a_lower.begin(), a_lower.end(), a_lower.begin(),
-                             ::tolower);
-              std::transform(b_lower.begin(), b_lower.end(), b_lower.begin(),
-                             ::tolower);
-              return a_lower < b_lower;
-            });
-
-  // Write the sorted frequency to the file
-  for (const auto &pair : sorted_freq) {
-    output_file << pair.first << " " << pair.second << "\n";
-  }
-
-  // Close the file
-  output_file.close();
-};
-
-void removeNewLinesWithcomma(std::string &str) {
-  replace(str.begin(), str.end(), '\n', ',');
-};
-
-void frequency(std::string response_str) {
-  std::string str = response_str;
-  removeNewLinesWithcomma(str);
-  std::istringstream iss(str);
-  std::string word;
-  while (std::getline(iss, word, ',')) {
-    if (!word.empty() && word != "EOF") {
-      freq[word]++;
-    }
-  }
-};
-void * client_handle(void * arg)
+void * connect_server(void * arg)
 {
   std::map<std::string, int> freq; // contain frequency of corresponding word
   int s;
@@ -128,7 +74,7 @@ void * client_handle(void * arg)
       //return -1;
     }
 
-    printf("Response from offset %d:\n", offset);
+   // printf("Response from offset %d:\n", offset);
     int words_received = 0;
     bool eof_received = false;
     std::string response_str = "";
@@ -149,7 +95,7 @@ void * client_handle(void * arg)
       words_received += count + 1;
 
       if (strstr(buffer, "EOF") != NULL) {
-        printf("\nEOF received.\n");
+       // printf("\nEOF received.\n");
         eof_received = true;
         break;
       }
@@ -158,8 +104,7 @@ void * client_handle(void * arg)
         break;
       }
     }
-    printf("%s\n", response_str.c_str()); // to C style
-    frequency(response_str.c_str());
+   // printf("%s\n", response_str.c_str()); // to C style
     if (bytes_read < 0) {
       printf("read() error");
       close(s);
@@ -172,11 +117,9 @@ void * client_handle(void * arg)
 
     offset += MAX_WORDS;
 
-    printf("\nSending new request for offset %d\n", offset);
+    //printf("\nSending new request for offset %d\n", offset);
   }
   
-
-  print_freq();
   close(s);
   return NULL;
   //return 0;
@@ -195,25 +138,25 @@ int main() {
         for(int i=0;i<client_count.size();i++)
            {
                 std :: vector<pthread_t> th(client_count[i]);    
-                for(int j=0;j<client_count[i];i++)   //create thread
+                for(int j=0;j<client_count[i];j++)   //create thread
                     {
-                              if(pthread_create(&th[j],NULL,&client_handle,NULL)!=0)
+                              if(pthread_create(&th[j],NULL,&connect_server,NULL)!=0)
                                  {
                                     perror("failed to create thread\n");
                                     return 2;
                                  }
                     };
-                for(int j=0;j<client_count[j];j++)   //join thread
+                for(int j=0;j<client_count[i];j++)   //join thread
                    {
                               if(pthread_join(th[j],NULL)!=0)
                                  {
                                     perror("failed to join thread\n");
-                                    std::cout<<"i :"<<i<<"client no:"<<client_count[j];
+                                    std::cout<<client_count[i]<<" :"<<j;
                                     return 3;
                                  }
                                else {
-                                         std::cout<<i<<":"<<j<<"\n";
-                                    }  
+                                         std::cout<<i<<":"<<j<<" Complete :\n";
+                                    } ; 
                    };
                     
                 

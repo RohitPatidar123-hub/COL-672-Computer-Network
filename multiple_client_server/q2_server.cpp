@@ -17,6 +17,65 @@
 
 #define BUFFER_SIZE 10240
 #define FILE_BUFFER 10240
+int PACKET_SIZE = 10;
+char buffer[BUFFER_SIZE];
+std::vector<std::string> words;   // csv file ke words ke liye
+void* handle_client(void *arg)
+   {
+       int c=*(int*)arg;
+       while (1) {
+      ssize_t bytes_from_client = read(c, buffer, BUFFER_SIZE - 1);
+      if (bytes_from_client <= 0) {
+        if (bytes_from_client == 0) {
+          std::cout << "Client disconnected" << "\n";
+        } else {
+          std::cout << "read() error\n";
+        }
+        break;
+      }
+      buffer[bytes_from_client] = '\0';
+
+      int offset = strtol(buffer, NULL, 10);
+      std::cout << "Received offset: " << offset << "\n";
+
+      std::ostringstream response;
+      if (offset < (int)words.size()) {
+        for (size_t i = offset; i < words.size(); i += PACKET_SIZE) {
+          response.str("");
+          response.clear();
+
+          for (size_t j = 0; j < PACKET_SIZE && (i + j) < words.size(); ++j) {
+            response << words[i + j];
+            if (i + j < words.size() - 1 && j < PACKET_SIZE - 1) {
+              response << ',';
+            }
+          }
+
+          std::string response_str = response.str();
+
+          response_str += '\n';
+
+          ssize_t bytes_sent =
+              write(c, response_str.c_str(), response_str.size());
+          printf("bytes_sent : %zd \n", bytes_sent);
+          if (bytes_sent == -1) {
+            std::cout << "write() error\n";
+            break;
+          } else if (bytes_sent != static_cast<ssize_t>(response_str.size())) {
+            std::cout << "Partial write occurred" << "\n";
+          }
+
+          //usleep(100000);
+        }
+      } else {
+        response << "End of connection";
+        std::string response_str = response.str();
+        write(c, response_str.c_str(), response_str.size());
+        std::cout << "Sent: " << response_str << "\n";
+      }
+    }
+       return NULL;
+   };
 
 void handle_sigpipe(int sig) {
   std::cout << "Caught SIGPIPE (Client disconnected abruptly)\n";
@@ -32,9 +91,6 @@ int main() {
   int s, c, fd;
   signal(SIGPIPE, handle_sigpipe);
   socklen_t addrlen;
-  std::vector<std::string> words; // csv file ke words ke liye
-  char buffer[BUFFER_SIZE];
-
   std::ifstream config_file("config.json");
   if (!config_file.is_open()) {
     std::cerr << "Failed to open config.json\n";
@@ -116,58 +172,17 @@ int main() {
       return -1;
     }
     std::cout << "Client connected" << "\n";
-
-    while (1) {
-      ssize_t bytes_from_client = read(c, buffer, BUFFER_SIZE - 1);
-      if (bytes_from_client <= 0) {
-        if (bytes_from_client == 0) {
-          std::cout << "Client disconnected" << "\n";
-        } else {
-          std::cout << "read() error\n";
-        }
-        break;
-      }
-      buffer[bytes_from_client] = '\0';
-
-      int offset = strtol(buffer, NULL, 10);
-      std::cout << "Received offset: " << offset << "\n";
-
-      std::ostringstream response;
-      if (offset < (int)words.size()) {
-        for (size_t i = offset; i < words.size(); i += PACKET_SIZE) {
-          response.str("");
-          response.clear();
-
-          for (size_t j = 0; j < PACKET_SIZE && (i + j) < words.size(); ++j) {
-            response << words[i + j];
-            if (i + j < words.size() - 1 && j < PACKET_SIZE - 1) {
-              response << ',';
-            }
-          }
-
-          std::string response_str = response.str();
-
-          response_str += '\n';
-
-          ssize_t bytes_sent =
-              write(c, response_str.c_str(), response_str.size());
-          printf("bytes_sent : %zd \n", bytes_sent);
-          if (bytes_sent == -1) {
-            std::cout << "write() error\n";
-            break;
-          } else if (bytes_sent != static_cast<ssize_t>(response_str.size())) {
-            std::cout << "Partial write occurred" << "\n";
-          }
-
-          usleep(100000);
-        }
-      } else {
-        response << "End of connection";
-        std::string response_str = response.str();
-        write(c, response_str.c_str(), response_str.size());
-        std::cout << "Sent: " << response_str << "\n";
-      }
-    }
+        pthread_t thread;
+       int* client_sock_ptr = new int;    // Create a new pthread to handle the client
+        *client_sock_ptr = c; 
+        if(pthread_create(&thread,NULL,&handle_client,(void*)client_sock_ptr)!=0)
+                {
+                                    perror("failed to create thread\n");
+                                    return 2;
+                }
+        
+    pthread_join(thread,NULL); 
+    
     close(c);
   }
 
