@@ -1,118 +1,118 @@
- button mushroom 1
- EOF 1
- quince 1
-aaa 6
-apple 1
-apricot 2
-artichoke 1
-arugula 1
-asparagus 1
-banana 1
-basil 1
-beefsteak tomato 1
-beet 1
-blackberry 1
-blueberry 2
-broccoli 1
-brusselsprout 1
-cabbage 1
-carambola 1
-carrot 1
-cauliflower 1
-celery 1
-chanterelle 1
-cherimoya 1
-cherry 1
-chive 1
-cilantro 1
-coconut 1
-corn 1
-cranberry 1
-cremini 1
-cress 1
-cucumber 1
-daikon 1
-daikon radish 1
-dates 1
-dill 1
-dragonfruit 2
-eggplant 1
-elderberry 1
-enoki 1
-fennel 1
-fig 1
-garlic 1
-ginger 1
-gooseberry 1
-grape 1
-grapefruit 2
-green tomato 1
-greenbean 1
-guava 1
-heirloom tomato 1
-hen of the woods 1
-hen-of-the-woods 1
-hibiscus 1
-jackfruit 1
-jerusalem artichoke 1
-kale 1
-kiwi 2
-kiwifruit 1
-langsat 1
-leek 1
-lemon 1
-lime 1
-lingonberry 1
-loquat 1
-lychee 1
-maitake 1
-mandarin 1
-mango 1
-melon 1
-mint 1
-mizuna 1
-monstera 1
-morel 1
-mushroom 1
-nectarine 1
-olive 1
-onion 1
-orange 2
-oregano 1
-papaya 2
-parsnip 1
-passionfruit 1
-pea 1
-peach 1
-pear 1
-plantain 1
-plum 1
-plumcot 1
-pluot 1
-pomegranate 2
-porcini 1
-portobello 1
-radicchio 1
-radish 1
-raspberry 1
-redcurrant 1
-rhubarb 1
-roma tomato 1
-rosemary 1
-rutabaga 1
-sage 1
-shallot 1
-shiitake 1
-shimeji 1
-spinach 1
-starfruit 1
-strawberry 1
-sweetpotato 1
-tangerine 1
-thyme 2
-turnip 1
-watercress 1
-watermelon 1
-watermelon radish 1
-yellow tomato 1
-zucchini 1
+ button mushroom 8
+ EOF 8
+ quince 8
+aaa 48
+apple 8
+apricot 16
+artichoke 8
+arugula 8
+asparagus 8
+banana 8
+basil 8
+beefsteak tomato 8
+beet 8
+blackberry 8
+blueberry 16
+broccoli 8
+brusselsprout 8
+cabbage 8
+carambola 8
+carrot 8
+cauliflower 8
+celery 8
+chanterelle 8
+cherimoya 8
+cherry 8
+chive 8
+cilantro 8
+coconut 8
+corn 8
+cranberry 8
+cremini 8
+cress 8
+cucumber 8
+daikon 8
+daikon radish 8
+dates 8
+dill 8
+dragonfruit 16
+eggplant 8
+elderberry 8
+enoki 8
+fennel 8
+fig 8
+garlic 8
+ginger 8
+gooseberry 8
+grape 8
+grapefruit 16
+green tomato 8
+greenbean 8
+guava 8
+heirloom tomato 8
+hen of the woods 8
+hen-of-the-woods 8
+hibiscus 8
+jackfruit 8
+jerusalem artichoke 8
+kale 8
+kiwi 16
+kiwifruit 8
+langsat 8
+leek 8
+lemon 8
+lime 8
+lingonberry 8
+loquat 8
+lychee 8
+maitake 8
+mandarin 8
+mango 8
+melon 8
+mint 8
+mizuna 8
+monstera 8
+morel 8
+mushroom 8
+nectarine 8
+olive 8
+onion 8
+orange 16
+oregano 8
+papaya 16
+parsnip 8
+passionfruit 8
+pea 8
+peach 8
+pear 8
+plantain 8
+plum 8
+plumcot 8
+pluot 8
+pomegranate 16
+porcini 8
+portobello 8
+radicchio 8
+radish 8
+raspberry 8
+redcurrant 8
+rhubarb 8
+roma tomato 8
+rosemary 8
+rutabaga 8
+sage 8
+shallot 8
+shiitake 8
+shimeji 8
+spinach 8
+starfruit 8
+strawberry 8
+sweetpotato 8
+tangerine 8
+thyme 16
+turnip 8
+watercress 8
+watermelon 8
+watermelon radish 8
+yellow tomato 8
+zucchini 8

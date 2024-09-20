@@ -20,7 +20,7 @@
 #include <sys/socket.h>
 #include <sys/types.h>
 #include <unistd.h>
-
+pthread_mutex_t mutex;
 #define BUFFER_SIZE 10240
 using json = nlohmann::json; // like alias in bash
 
@@ -77,8 +77,8 @@ void frequency(std::string response_str) {
     }
   }
 };
-
-int main() {
+void * client_handle(void * arg)
+{
   std::map<std::string, int> freq; // contain frequency of corresponding word
   int s;
   struct sockaddr_in sock;
@@ -91,7 +91,7 @@ int main() {
   std::ifstream config_file("config.json");
   if (!config_file.is_open()) {
     std::cout << "Failed to open config.json\n";
-    return -1;
+    //return -1;
   }
 
   json config;
@@ -105,7 +105,7 @@ int main() {
   s = socket(AF_INET, SOCK_STREAM, 0);
   if (s < 0) {
     printf("socket() error");
-    return -1;
+   // return -1;
   }
 
   sock.sin_addr.s_addr = inet_addr(IP.c_str());
@@ -115,15 +115,17 @@ int main() {
   if (connect(s, (struct sockaddr *)&sock, sizeof(struct sockaddr_in)) != 0) {
     printf("connect() error");
     close(s);
-    return -1;
+    //return -1;
   }
   
   while (1) {
+    pthread_mutex_lock(&mutex);                            //we use mutex to prevent race condition 
     snprintf(request, sizeof(request), "%d", offset);
+    pthread_mutex_unlock(&mutex);
     if (write(s, request, strlen(request)) < 0) {
       printf("write() error");
       close(s);
-      return -1;
+      //return -1;
     }
 
     printf("Response from offset %d:\n", offset);
@@ -161,7 +163,7 @@ int main() {
     if (bytes_read < 0) {
       printf("read() error");
       close(s);
-      return -1;
+      //return -1;
     }
 
     if (eof_received) {
@@ -176,5 +178,46 @@ int main() {
 
   print_freq();
   close(s);
-  return 0;
+  return NULL;
+  //return 0;
+};
+int main() {
+        std ::vector<int> client_count;
+        std ::cout<<"No. of client :";
+        client_count.push_back(1);
+        std ::cout<<client_count[0]<<" ";
+        for (int i=1;i<=8;i++)
+            {
+                client_count.push_back(i*4);    //initialize no. of client connect at a time
+                std::cout<<client_count[i]<<" ";
+            }
+        
+        for(int i=0;i<client_count.size();i++)
+           {
+                std :: vector<pthread_t> th(client_count[i]);    
+                for(int j=0;j<client_count[i];i++)   //create thread
+                    {
+                              if(pthread_create(&th[j],NULL,&client_handle,NULL)!=0)
+                                 {
+                                    perror("failed to create thread\n");
+                                    return 2;
+                                 }
+                    };
+                for(int j=0;j<client_count[j];j++)   //join thread
+                   {
+                              if(pthread_join(th[j],NULL)!=0)
+                                 {
+                                    perror("failed to join thread\n");
+                                    std::cout<<"i :"<<i<<"client no:"<<client_count[j];
+                                    return 3;
+                                 }
+                               else {
+                                         std::cout<<i<<":"<<j<<"\n";
+                                    }  
+                   };
+                    
+                
+           }
+           return 1;
+
 }
