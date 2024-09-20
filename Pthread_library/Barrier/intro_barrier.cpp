@@ -44,7 +44,7 @@ int main()
 #include <pthread.h>
 #include <string.h>
 
-pthread_barrier_t barrier;  // Declare the barrier
+pthread_barrier_t barrier;  // Declare the barrier this code is only work in windows not in mac
 
 void *routine(void *arg) {
     printf("Waiting at the Barrier\n");
