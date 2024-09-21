@@ -46,7 +46,7 @@ void * connect_server(void * arg)
   std::string IP = config["server_ip"];
   int PORT = config["server_port"];
   int MAX_WORDS = config["k"];
-  int PACKET_SIZE = config["p"];
+  //int PACKET_SIZE = config["p"];
 
   s = socket(AF_INET, SOCK_STREAM, 0);
   if (s < 0) {
@@ -74,7 +74,7 @@ void * connect_server(void * arg)
       //return -1;
     }
 
-   // printf("Response from offset %d:\n", offset);
+    printf("Response from offset %d:\n", offset);
     int words_received = 0;
     bool eof_received = false;
     std::string response_str = "";
@@ -95,7 +95,7 @@ void * connect_server(void * arg)
       words_received += count + 1;
 
       if (strstr(buffer, "EOF") != NULL) {
-       // printf("\nEOF received.\n");
+       printf("\nEOF received.\n");
         eof_received = true;
         break;
       }
@@ -104,7 +104,7 @@ void * connect_server(void * arg)
         break;
       }
     }
-   // printf("%s\n", response_str.c_str()); // to C style
+   printf("%s\n", response_str.c_str()); // to C style
     if (bytes_read < 0) {
       printf("read() error");
       close(s);
@@ -125,16 +125,25 @@ void * connect_server(void * arg)
   //return 0;
 };
 int main() {
-        std ::vector<int> client_count;
-        std ::cout<<"No. of client :";
-        client_count.push_back(1);
-        std ::cout<<client_count[0]<<" ";
-        for (int i=1;i<=8;i++)
-            {
-                client_count.push_back(i*4);    //initialize no. of client connect at a time
-                //std::cout<<client_count[i]<<" ";
+
+             std::ifstream config_file("config.json");
+             if (!config_file.is_open()) {
+             std::cout << "Failed to open config.json\n";
+            //return -1;
+        }
+
+        json config;
+        config_file >> config;
+        std::vector<int> client_count;
+        if (config.contains("num_clients") && config["num_clients"].is_array()) {
+        client_count = config["num_clients"].get<std::vector<int>>();
+
+        // Output the numbers
+                   std::cout << "The numbers in the array are: ";
+                   for (int num : client_count) {
+                   std::cout << num << " ";
             }
-        
+        } 
         for(int i=0;i<client_count.size();i++)
            {
                 std :: vector<pthread_t> th(client_count[i]);    
@@ -155,9 +164,10 @@ int main() {
                                     return 3;
                                  }
                                else {
-                                         std::cout<<i<<":"<<j<<" Complete :\n";
+                                         std::cout<<i<<":"<<j<<" Complete :\n\n";
                                     } ; 
                    };
+
                     
                 
            }

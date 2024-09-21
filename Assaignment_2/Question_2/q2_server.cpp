@@ -23,6 +23,7 @@ std::vector<std::string> words;   // csv file ke words ke liye
 void* handle_client(void *arg)
    {
        int c=*(int*)arg;
+       delete(int*)arg;
        while (1) {
       ssize_t bytes_from_client = read(c, buffer, BUFFER_SIZE - 1);
       if (bytes_from_client <= 0) {
