@@ -15,6 +15,7 @@
 #include <unistd.h>
 #include <vector>
 #include <signal.h>
+
 using json = nlohmann::json;
 #define BUFFER_SIZE 10240
 #define FILE_BUFFER 10240
@@ -199,7 +200,7 @@ int main() {
   int PORT = config["server_port"];
   int PACKET_SIZE = config["p"];
   int MAX_WORDS = config["k"];
-  std::string file_to_read = config["file_to_read"];
+  std::string file_to_read = config["input_file"];
 
   // Open the specified file
   fd = open(file_to_read.c_str(), O_RDONLY);
@@ -275,7 +276,7 @@ int main() {
                                     return 2;
                 }
         
-    pthread_join(thread,NULL); 
+        pthread_join(thread,NULL); 
     
     close(c);
   }
