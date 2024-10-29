@@ -1,0 +1,202 @@
+Server listening on 127.0.0.1:8080
+Waiting for client connection...
+Connection established with client ('127.0.0.1', 57652)
+SLOW START PHASE
+ 
+Send packet with window size : 1 in Iteartion 0 window_base 0 
+
+WINDOWSIZE  1
+1 Sent packet with sequence number 0 at 1730244214.227386 
+
+Ack receive 1400 from  packet 1 at 1730244214.4280162
+SLOW START PHASE
+ 
+Send packet with window size : 2 in Iteartion 1 window_base 1400 
+
+WINDOWSIZE  2
+1 Sent packet with sequence number 1400 at 1730244214.428086 
+
+2 Sent packet with sequence number 2800 at 1730244214.428116 
+
+Ack receive 4200 from  packet 2 at 1730244214.628588
+SLOW START PHASE
+ 
+Send packet with window size : 4 in Iteartion 2 window_base 4200 
+
+WINDOWSIZE  4
+1 Sent packet with sequence number 4200 at 1730244214.6286469 
+
+2 Sent packet with sequence number 5600 at 1730244214.628662 
+
+3 Sent packet with sequence number 7000 at 1730244214.6286871 
+
+4 Sent packet with sequence number 8400 at 1730244214.628709 
+
+Ack receive 9800 from  packet 3 at 1730244214.829511
+SLOW START PHASE
+ 
+Send packet with window size : 8 in Iteartion 3 window_base 9800 
+
+WINDOWSIZE  8
+1 Sent packet with sequence number 9800 at 1730244214.8295732 
+
+2 Sent packet with sequence number 11200 at 1730244214.829605 
+
+3 Sent packet with sequence number 12600 at 1730244214.829622 
+
+4 Sent packet with sequence number 14000 at 1730244214.829637 
+
+5 Sent packet with sequence number 15400 at 1730244214.830554 
+
+6 Sent packet with sequence number 16800 at 1730244214.830566 
+
+7 Sent packet with sequence number 18200 at 1730244214.830585 
+
+8 Sent packet with sequence number 19600 at 1730244214.8306 
+
+Ack receive 21000 from  packet 4 at 1730244215.031144
+SLOW START PHASE
+ 
+Send packet with window size : 16 in Iteartion 4 window_base 21000 
+
+WINDOWSIZE  16
+1 Sent packet with sequence number 21000 at 1730244215.03121 
+
+2 Sent packet with sequence number 22400 at 1730244215.031229 
+
+3 Sent packet with sequence number 23800 at 1730244215.03126 
+
+4 Sent packet with sequence number 25200 at 1730244215.031273 
+
+5 Sent packet with sequence number 26600 at 1730244215.031285 
+
+6 Sent packet with sequence number 28000 at 1730244215.031403 
+
+7 Sent packet with sequence number 29400 at 1730244215.031415 
+
+8 Sent packet with sequence number 30800 at 1730244215.031426 
+
+9 Sent packet with sequence number 32200 at 1730244215.032214 
+
+10 Sent packet with sequence number 33600 at 1730244215.03223 
+
+11 Sent packet with sequence number 35000 at 1730244215.032249 
+
+12 Sent packet with sequence number 36400 at 1730244215.032264 
+
+13 Sent packet with sequence number 37800 at 1730244215.032277 
+
+14 Sent packet with sequence number 39200 at 1730244215.0322921 
+
+15 Sent packet with sequence number 40600 at 1730244215.032305 
+
+16 Sent packet with sequence number 42000 at 1730244215.032317 
+
+Ack receive 43400 from  packet 5 at 1730244215.233014
+ADDITIVE INCREASE PHASE
+ 
+Send packet with window size : 17 in Iteartion 5 window_base 43400 
+
+WINDOWSIZE  17
+1 Sent packet with sequence number 43400 at 1730244215.233071 
+
+2 Sent packet with sequence number 44800 at 1730244215.233187 
+
+3 Sent packet with sequence number 46200 at 1730244215.2331991 
+
+4 Sent packet with sequence number 47600 at 1730244215.233212 
+
+5 Sent packet with sequence number 49000 at 1730244215.234092 
+
+6 Sent packet with sequence number 50400 at 1730244215.2341042 
+
+7 Sent packet with sequence number 51800 at 1730244215.234114 
+
+8 Sent packet with sequence number 53200 at 1730244215.234127 
+
+9 Sent packet with sequence number 54600 at 1730244215.234139 
+
+10 Sent packet with sequence number 56000 at 1730244215.234155 
+
+11 Sent packet with sequence number 57400 at 1730244215.234168 
+
+12 Sent packet with sequence number 58800 at 1730244215.234179 
+
+13 Sent packet with sequence number 60200 at 1730244215.234209 
+
+14 Sent packet with sequence number 61600 at 1730244215.234218 
+
+15 Sent packet with sequence number 63000 at 1730244215.234229 
+
+16 Sent packet with sequence number 64400 at 1730244215.2342432 
+
+17 Sent packet with sequence number 65800 at 1730244215.2342532 
+
+Ack receive 67200 from  packet 6 at 1730244215.435261
+ADDITIVE INCREASE PHASE
+ 
+Send packet with window size : 18 in Iteartion 6 window_base 67200 
+
+WINDOWSIZE  18
+1 Sent packet with sequence number 67200 at 1730244215.4353 
+
+2 Sent packet with sequence number 68600 at 1730244215.435325 
+
+3 Sent packet with sequence number 70000 at 1730244215.43534 
+
+4 Sent packet with sequence number 71400 at 1730244215.435352 
+
+5 Sent packet with sequence number 72800 at 1730244215.435364 
+
+6 Sent packet with sequence number 74200 at 1730244215.4353752 
+
+7 Sent packet with sequence number 75600 at 1730244215.4353862 
+
+8 Sent packet with sequence number 77000 at 1730244215.4353979 
+
+9 Sent packet with sequence number 78400 at 1730244215.43541 
+
+10 Sent packet with sequence number 79800 at 1730244215.4354198 
+
+11 Sent packet with sequence number 81200 at 1730244215.435433 
+
+12 Sent packet with sequence number 82600 at 1730244215.435446 
+
+13 Sent packet with sequence number 84000 at 1730244215.435457 
+
+14 Sent packet with sequence number 85400 at 1730244215.435468 
+
+15 Sent packet with sequence number 86800 at 1730244215.435479 
+
+16 Sent packet with sequence number 88200 at 1730244215.435489 
+
+17 Sent packet with sequence number 89600 at 1730244215.4355001 
+
+18 Sent packet with sequence number 91000 at 1730244215.43551 
+
+Ack receive 92400 from  packet 7 at 1730244215.637204
+ADDITIVE INCREASE PHASE
+ 
+Send packet with window size : 19 in Iteartion 7 window_base 92400 
+
+WINDOWSIZE  19
+1 Sent packet with sequence number 92400 at 1730244215.637274 
+
+2 Sent packet with sequence number 93800 at 1730244215.637303 
+
+3 Sent packet with sequence number 95200 at 1730244215.6373188 
+
+4 Sent packet with sequence number 96600 at 1730244215.637334 
+
+5 Sent packet with sequence number 98000 at 1730244215.6373508 
+
+6 Sent packet with sequence number 99400 at 1730244215.637363 
+
+7 Sent packet with sequence number 100800 at 1730244215.6373749 
+
+8 Sent packet with sequence number 102200 at 1730244215.637389 
+
+9 Sent packet with sequence number 103600 at 1730244215.637401 
+
+Ack receive 104358 from  packet 8 at 1730244215.838285
+File transfer complete
